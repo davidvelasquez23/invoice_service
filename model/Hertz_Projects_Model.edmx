@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Hertz_Projects_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="api_configuration">
+          <Key>
+            <PropertyRef Name="idconfiugration" />
+          </Key>
+          <Property Name="idconfiugration" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyDB" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="combustible_excepciones">
+          <Key>
+            <PropertyRef Name="id_fuel_exception" />
+          </Key>
+          <Property Name="id_fuel_exception" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cod_cliente" Type="nvarchar" MaxLength="100" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="configuration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="path_file_no_process" Type="nvarchar" MaxLength="300" />
+          <Property Name="path_file_process" Type="nvarchar" MaxLength="300" />
+          <Property Name="path_file_error" Type="nvarchar" MaxLength="300" />
+          <Property Name="path_file_nocorrelativo" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="correlatives">
+          <Key>
+            <PropertyRef Name="id_Seq" />
+          </Key>
+          <Property Name="id_Seq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serie" Type="int" />
+          <Property Name="location_code" Type="varchar" MaxLength="50" />
+          <Property Name="cost_center" Type="nvarchar" MaxLength="15" />
+          <Property Name="company" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="correlativosSar">
+          <Key>
+            <PropertyRef Name="IdCorrelativoSar" />
+          </Key>
+          <Property Name="IdCorrelativoSar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locationId" Type="int" />
+          <Property Name="CorrelativoReferencia" Type="varchar" MaxLength="50" />
+          <Property Name="CorrelativoInicial" Type="int" />
+          <Property Name="CorrelativoSiguiente" Type="int" />
+          <Property Name="CorrelativoFinal" Type="int" />
+          <Property Name="FechaVenceCAI" Type="datetime" />
+          <Property Name="FechaEmision" Type="datetime" />
+          <Property Name="CAI" Type="varchar" MaxLength="100" />
+          <Property Name="notificacion" Type="int" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="customer_exception">
+          <Key>
+            <PropertyRef Name="id_exception" />
+          </Key>
+          <Property Name="id_exception" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_code" Type="nvarchar" MaxLength="100" />
+          <Property Name="exchange_rate" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="customer_exception_for_draft">
+          <Key>
+            <PropertyRef Name="id_exception" />
+          </Key>
+          <Property Name="id_exception" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_code" Type="nvarchar" MaxLength="100" />
+          <Property Name="customer_name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="draft_detail_post">
+          <Key>
+            <PropertyRef Name="draftid_detail" />
+          </Key>
+          <Property Name="draftid_detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="draftId" Type="int" />
+          <Property Name="ItemCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="100" />
+          <Property Name="UnitPrice" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProjectCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostingCode2" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostingCode3" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="draft_header_post">
+          <Key>
+            <PropertyRef Name="draftId" />
+          </Key>
+          <Property Name="draftId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="docObjectCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="docDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="series" Type="int" />
+          <Property Name="U_RTN" Type="nvarchar" MaxLength="50" />
+          <Property Name="U_CONTRATO" Type="nvarchar" MaxLength="300" />
+          <Property Name="contract_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="json_to_sap" Type="nvarchar(max)" />
+          <Property Name="docEntry" Type="int" />
+          <Property Name="docEntry_factura" Type="int" />
+          <Property Name="docnum" Type="int" />
+          <Property Name="date_processed" Type="datetime" />
+          <Property Name="facturado" Type="bit" />
+        </EntityType>
+        <EntityType Name="draftsOrderLines">
+          <Key>
+            <PropertyRef Name="invoiceLinesId" />
+          </Key>
+          <Property Name="invoiceLinesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="node" Type="nvarchar" MaxLength="100" />
+          <Property Name="second_node" Type="nchar" MaxLength="10" />
+          <Property Name="code_value" Type="nchar" MaxLength="10" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
+          <Property Name="line_order" Type="int" />
+        </EntityType>
+        <EntityType Name="error_log">
+          <Key>
+            <PropertyRef Name="idlog" />
+          </Key>
+          <Property Name="idlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_error" Type="datetime" />
+          <Property Name="project" Type="nvarchar" MaxLength="100" />
+          <Property Name="method_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="error_description" Type="nvarchar" MaxLength="300" />
+          <Property Name="trace_error" Type="nvarchar(max)" />
+          <Property Name="file_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="contract_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="location_code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="invoice_detail_post">
+          <Key>
+            <PropertyRef Name="invoiceid_detail" />
+          </Key>
+          <Property Name="invoiceid_detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invoiceId" Type="int" />
+          <Property Name="ItemCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="100" />
+          <Property Name="UnitPrice" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProjectCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostingCode2" Type="nvarchar" MaxLength="100" />
+          <Property Name="CostingCode3" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="invoice_error_log">
+          <Key>
+            <PropertyRef Name="idlog" />
+          </Key>
+          <Property Name="idlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_error" Type="datetime" />
+          <Property Name="project" Type="nvarchar(max)" />
+          <Property Name="method_name" Type="nvarchar(max)" />
+          <Property Name="error_description" Type="nvarchar(max)" />
+          <Property Name="trace_error" Type="nvarchar(max)" />
+          <Property Name="file_name" Type="nvarchar(max)" />
+          <Property Name="contract_number" Type="nvarchar(max)" />
+          <Property Name="location_code" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="invoice_header_post">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_SSAI" Type="nvarchar" MaxLength="100" />
+          <Property Name="CardCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="docObjectCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="docDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="series" Type="int" />
+          <Property Name="U_RTN" Type="nvarchar" MaxLength="50" />
+          <Property Name="U_CONTRATO" Type="nvarchar" MaxLength="300" />
+          <Property Name="contract_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="json_to_sap" Type="nvarchar(max)" />
+          <Property Name="docEntry" Type="int" />
+          <Property Name="docnum" Type="int" />
+          <Property Name="date_processed" Type="datetime" />
+          <Property Name="correlativoSar" Type="int" />
+          <Property Name="n_factura" Type="nvarchar" MaxLength="50" />
+          <Property Name="cai" Type="nvarchar" MaxLength="50" />
+          <Property Name="correlativoOrdenCompraExenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="correlativoConstanciaRegistro" Type="nvarchar" MaxLength="50" />
+          <Property Name="identificativoRegistroSag" Type="nvarchar" MaxLength="50" />
+          <Property Name="granTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="impreso" Type="bit" />
+          <Property Name="id_attachment" Type="int" />
+          <Property Name="CANCELED" Type="nvarchar" MaxLength="2" />
+          <Property Name="actualizada_por" Type="nvarchar" MaxLength="100" />
+          <Property Name="user_anula" Type="nvarchar" MaxLength="20" />
+          <Property Name="adicion" Type="bit" />
+          <Property Name="puede_adicionar" Type="bit" />
+        </EntityType>
+        <EntityType Name="locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="user_credential_windows">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_credential" Type="nvarchar" MaxLength="100" />
+          <Property Name="password_credential" Type="nvarchar" MaxLength="100" />
+          <Property Name="ip" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="Hertz_Projects_ModelStoreContainer">
+          <EntitySet Name="api_configuration" EntityType="Self.api_configuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="combustible_excepciones" EntityType="Self.combustible_excepciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="configuration" EntityType="Self.configuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="correlatives" EntityType="Self.correlatives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="correlativosSar" EntityType="Self.correlativosSar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer_exception" EntityType="Self.customer_exception" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer_exception_for_draft" EntityType="Self.customer_exception_for_draft" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="draft_detail_post" EntityType="Self.draft_detail_post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="draft_header_post" EntityType="Self.draft_header_post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="draftsOrderLines" EntityType="Self.draftsOrderLines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="error_log" EntityType="Self.error_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice_detail_post" EntityType="Self.invoice_detail_post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice_error_log" EntityType="Self.invoice_error_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice_header_post" EntityType="Self.invoice_header_post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="locations" EntityType="Self.locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_credential_windows" EntityType="Self.user_credential_windows" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Hertz_Projects_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="api_configuration">
+          <Key>
+            <PropertyRef Name="idconfiugration" />
+          </Key>
+          <Property Name="idconfiugration" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="configuration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="path_file_no_process" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="path_file_process" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="path_file_error" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="path_file_nocorrelativo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="correlatives">
+          <Key>
+            <PropertyRef Name="id_Seq" />
+          </Key>
+          <Property Name="id_Seq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serie" Type="Int32" />
+          <Property Name="location_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cost_center" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="company" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="correlativosSar">
+          <Key>
+            <PropertyRef Name="IdCorrelativoSar" />
+          </Key>
+          <Property Name="IdCorrelativoSar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locationId" Type="Int32" />
+          <Property Name="CorrelativoReferencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorrelativoInicial" Type="Int32" />
+          <Property Name="CorrelativoSiguiente" Type="Int32" />
+          <Property Name="CorrelativoFinal" Type="Int32" />
+          <Property Name="FechaVenceCAI" Type="DateTime" Precision="3" />
+          <Property Name="FechaEmision" Type="DateTime" Precision="3" />
+          <Property Name="CAI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="notificacion" Type="Int32" />
+          <Property Name="Estado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="customer_exception">
+          <Key>
+            <PropertyRef Name="id_exception" />
+          </Key>
+          <Property Name="id_exception" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="exchange_rate" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="customer_exception_for_draft">
+          <Key>
+            <PropertyRef Name="id_exception" />
+          </Key>
+          <Property Name="id_exception" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="customer_name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="draft_detail_post">
+          <Key>
+            <PropertyRef Name="draftid_detail" />
+          </Key>
+          <Property Name="draftid_detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="draftId" Type="Int32" />
+          <Property Name="ItemCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostingCode2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostingCode3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="draft_header_post">
+          <Key>
+            <PropertyRef Name="draftId" />
+          </Key>
+          <Property Name="draftId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="docObjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="docDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="series" Type="Int32" />
+          <Property Name="U_RTN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="U_CONTRATO" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="contract_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="json_to_sap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="docEntry" Type="Int32" />
+          <Property Name="docEntry_factura" Type="Int32" />
+          <Property Name="docnum" Type="Int32" />
+          <Property Name="date_processed" Type="DateTime" Precision="3" />
+          <Property Name="facturado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="draftsOrderLines">
+          <Key>
+            <PropertyRef Name="invoiceLinesId" />
+          </Key>
+          <Property Name="invoiceLinesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="node" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="second_node" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="code_value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="line_order" Type="Int32" />
+        </EntityType>
+        <EntityType Name="error_log">
+          <Key>
+            <PropertyRef Name="idlog" />
+          </Key>
+          <Property Name="idlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_error" Type="DateTime" Precision="3" />
+          <Property Name="project" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="method_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="error_description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="trace_error" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="contract_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="location_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="invoice_error_log">
+          <Key>
+            <PropertyRef Name="idlog" />
+          </Key>
+          <Property Name="idlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_error" Type="DateTime" Precision="3" />
+          <Property Name="project" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="method_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="error_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="trace_error" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contract_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="location_code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user_credential_windows">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_credential" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="password_credential" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="Hertz_Projects_DevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="api_configuration" EntityType="Self.api_configuration" />
+          <EntitySet Name="configuration" EntityType="Self.configuration" />
+          <EntitySet Name="correlatives" EntityType="Self.correlatives" />
+          <EntitySet Name="correlativosSar" EntityType="Self.correlativosSar" />
+          <EntitySet Name="customer_exception" EntityType="Self.customer_exception" />
+          <EntitySet Name="customer_exception_for_draft" EntityType="Self.customer_exception_for_draft" />
+          <EntitySet Name="draft_detail_post" EntityType="Self.draft_detail_post" />
+          <EntitySet Name="draft_header_post" EntityType="Self.draft_header_post" />
+          <EntitySet Name="draftsOrderLines" EntityType="Self.draftsOrderLines" />
+          <EntitySet Name="error_log" EntityType="Self.error_log" />
+          <EntitySet Name="invoice_error_log" EntityType="Self.invoice_error_log" />
+          <EntitySet Name="locations" EntityType="Self.locations" />
+          <EntitySet Name="user_credential_windows" EntityType="Self.user_credential_windows" />
+          <EntitySet Name="invoice_detail_post" EntityType="Hertz_Projects_Model.invoice_detail_post" />
+          <EntitySet Name="invoice_header_post" EntityType="Hertz_Projects_Model.invoice_header_post" />
+          <EntitySet Name="combustible_excepciones" EntityType="Hertz_Projects_Model.combustible_excepciones" />
+        </EntityContainer>
+        <EntityType Name="invoice_detail_post">
+          <Key>
+            <PropertyRef Name="invoiceid_detail" />
+          </Key>
+          <Property Name="invoiceid_detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invoiceId" Type="Int32" />
+          <Property Name="ItemCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostingCode2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CostingCode3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="invoice_header_post">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_SSAI" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CardCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="docObjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="docDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="series" Type="Int32" />
+          <Property Name="U_RTN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="U_CONTRATO" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="contract_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="json_to_sap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="docEntry" Type="Int32" />
+          <Property Name="docnum" Type="Int32" />
+          <Property Name="date_processed" Type="DateTime" Precision="3" />
+          <Property Name="correlativoSar" Type="Int32" />
+          <Property Name="n_factura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="correlativoOrdenCompraExenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="correlativoConstanciaRegistro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="identificativoRegistroSag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="granTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="impreso" Type="Boolean" />
+          <Property Name="id_attachment" Type="Int32" />
+          <Property Name="CANCELED" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="user_anula" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="actualizada_por" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="adicion" Type="Boolean" />
+          <Property Name="puede_adicionar" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="combustible_excepciones">
+          <Key>
+            <PropertyRef Name="id_fuel_exception" />
+          </Key>
+          <Property Name="id_fuel_exception" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cod_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Hertz_Projects_ModelStoreContainer" CdmEntityContainer="Hertz_Projects_DevEntities">
+          <EntitySetMapping Name="api_configuration">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.api_configuration">
+              <MappingFragment StoreEntitySet="api_configuration">
+                <ScalarProperty Name="idconfiugration" ColumnName="idconfiugration" />
+                <ScalarProperty Name="CompanyDB" ColumnName="CompanyDB" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configuration">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.configuration">
+              <MappingFragment StoreEntitySet="configuration">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="path_file_no_process" ColumnName="path_file_no_process" />
+                <ScalarProperty Name="path_file_process" ColumnName="path_file_process" />
+                <ScalarProperty Name="path_file_error" ColumnName="path_file_error" />
+                <ScalarProperty Name="path_file_nocorrelativo" ColumnName="path_file_nocorrelativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="correlatives">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.correlatives">
+              <MappingFragment StoreEntitySet="correlatives">
+                <ScalarProperty Name="id_Seq" ColumnName="id_Seq" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="location_code" ColumnName="location_code" />
+                <ScalarProperty Name="cost_center" ColumnName="cost_center" />
+                <ScalarProperty Name="company" ColumnName="company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="correlativosSar">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.correlativosSar">
+              <MappingFragment StoreEntitySet="correlativosSar">
+                <ScalarProperty Name="IdCorrelativoSar" ColumnName="IdCorrelativoSar" />
+                <ScalarProperty Name="locationId" ColumnName="locationId" />
+                <ScalarProperty Name="CorrelativoReferencia" ColumnName="CorrelativoReferencia" />
+                <ScalarProperty Name="CorrelativoInicial" ColumnName="CorrelativoInicial" />
+                <ScalarProperty Name="CorrelativoSiguiente" ColumnName="CorrelativoSiguiente" />
+                <ScalarProperty Name="CorrelativoFinal" ColumnName="CorrelativoFinal" />
+                <ScalarProperty Name="FechaVenceCAI" ColumnName="FechaVenceCAI" />
+                <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+                <ScalarProperty Name="CAI" ColumnName="CAI" />
+                <ScalarProperty Name="notificacion" ColumnName="notificacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_exception">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.customer_exception">
+              <MappingFragment StoreEntitySet="customer_exception">
+                <ScalarProperty Name="id_exception" ColumnName="id_exception" />
+                <ScalarProperty Name="customer_code" ColumnName="customer_code" />
+                <ScalarProperty Name="exchange_rate" ColumnName="exchange_rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_exception_for_draft">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.customer_exception_for_draft">
+              <MappingFragment StoreEntitySet="customer_exception_for_draft">
+                <ScalarProperty Name="id_exception" ColumnName="id_exception" />
+                <ScalarProperty Name="customer_code" ColumnName="customer_code" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="draft_detail_post">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.draft_detail_post">
+              <MappingFragment StoreEntitySet="draft_detail_post">
+                <ScalarProperty Name="draftid_detail" ColumnName="draftid_detail" />
+                <ScalarProperty Name="draftId" ColumnName="draftId" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="CostingCode2" ColumnName="CostingCode2" />
+                <ScalarProperty Name="CostingCode3" ColumnName="CostingCode3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="draft_header_post">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.draft_header_post">
+              <MappingFragment StoreEntitySet="draft_header_post">
+                <ScalarProperty Name="draftId" ColumnName="draftId" />
+                <ScalarProperty Name="CardCode" ColumnName="CardCode" />
+                <ScalarProperty Name="docObjectCode" ColumnName="docObjectCode" />
+                <ScalarProperty Name="docDate" ColumnName="docDate" />
+                <ScalarProperty Name="series" ColumnName="series" />
+                <ScalarProperty Name="U_RTN" ColumnName="U_RTN" />
+                <ScalarProperty Name="U_CONTRATO" ColumnName="U_CONTRATO" />
+                <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+                <ScalarProperty Name="json_to_sap" ColumnName="json_to_sap" />
+                <ScalarProperty Name="docEntry" ColumnName="docEntry" />
+                <ScalarProperty Name="docEntry_factura" ColumnName="docEntry_factura" />
+                <ScalarProperty Name="docnum" ColumnName="docnum" />
+                <ScalarProperty Name="date_processed" ColumnName="date_processed" />
+                <ScalarProperty Name="facturado" ColumnName="facturado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="draftsOrderLines">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.draftsOrderLines">
+              <MappingFragment StoreEntitySet="draftsOrderLines">
+                <ScalarProperty Name="invoiceLinesId" ColumnName="invoiceLinesId" />
+                <ScalarProperty Name="node" ColumnName="node" />
+                <ScalarProperty Name="second_node" ColumnName="second_node" />
+                <ScalarProperty Name="code_value" ColumnName="code_value" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="line_order" ColumnName="line_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="error_log">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.error_log">
+              <MappingFragment StoreEntitySet="error_log">
+                <ScalarProperty Name="idlog" ColumnName="idlog" />
+                <ScalarProperty Name="date_error" ColumnName="date_error" />
+                <ScalarProperty Name="project" ColumnName="project" />
+                <ScalarProperty Name="method_name" ColumnName="method_name" />
+                <ScalarProperty Name="error_description" ColumnName="error_description" />
+                <ScalarProperty Name="trace_error" ColumnName="trace_error" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+                <ScalarProperty Name="location_code" ColumnName="location_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice_error_log">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.invoice_error_log">
+              <MappingFragment StoreEntitySet="invoice_error_log">
+                <ScalarProperty Name="idlog" ColumnName="idlog" />
+                <ScalarProperty Name="date_error" ColumnName="date_error" />
+                <ScalarProperty Name="project" ColumnName="project" />
+                <ScalarProperty Name="method_name" ColumnName="method_name" />
+                <ScalarProperty Name="error_description" ColumnName="error_description" />
+                <ScalarProperty Name="trace_error" ColumnName="trace_error" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+                <ScalarProperty Name="location_code" ColumnName="location_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.locations">
+              <MappingFragment StoreEntitySet="locations">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_credential_windows">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.user_credential_windows">
+              <MappingFragment StoreEntitySet="user_credential_windows">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_credential" ColumnName="user_credential" />
+                <ScalarProperty Name="password_credential" ColumnName="password_credential" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice_detail_post">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.invoice_detail_post">
+              <MappingFragment StoreEntitySet="invoice_detail_post">
+                <ScalarProperty Name="CostingCode3" ColumnName="CostingCode3" />
+                <ScalarProperty Name="CostingCode2" ColumnName="CostingCode2" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="invoiceId" ColumnName="invoiceId" />
+                <ScalarProperty Name="invoiceid_detail" ColumnName="invoiceid_detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice_header_post">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.invoice_header_post">
+              <MappingFragment StoreEntitySet="invoice_header_post">
+                <ScalarProperty Name="puede_adicionar" ColumnName="puede_adicionar" />
+                <ScalarProperty Name="adicion" ColumnName="adicion" />
+                <ScalarProperty Name="actualizada_por" ColumnName="actualizada_por" />
+                <ScalarProperty Name="user_anula" ColumnName="user_anula" />
+                <ScalarProperty Name="CANCELED" ColumnName="CANCELED" />
+                <ScalarProperty Name="id_attachment" ColumnName="id_attachment" />
+                <ScalarProperty Name="impreso" ColumnName="impreso" />
+                <ScalarProperty Name="granTotal" ColumnName="granTotal" />
+                <ScalarProperty Name="identificativoRegistroSag" ColumnName="identificativoRegistroSag" />
+                <ScalarProperty Name="correlativoConstanciaRegistro" ColumnName="correlativoConstanciaRegistro" />
+                <ScalarProperty Name="correlativoOrdenCompraExenta" ColumnName="correlativoOrdenCompraExenta" />
+                <ScalarProperty Name="cai" ColumnName="cai" />
+                <ScalarProperty Name="n_factura" ColumnName="n_factura" />
+                <ScalarProperty Name="correlativoSar" ColumnName="correlativoSar" />
+                <ScalarProperty Name="date_processed" ColumnName="date_processed" />
+                <ScalarProperty Name="docnum" ColumnName="docnum" />
+                <ScalarProperty Name="docEntry" ColumnName="docEntry" />
+                <ScalarProperty Name="json_to_sap" ColumnName="json_to_sap" />
+                <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+                <ScalarProperty Name="U_CONTRATO" ColumnName="U_CONTRATO" />
+                <ScalarProperty Name="U_RTN" ColumnName="U_RTN" />
+                <ScalarProperty Name="series" ColumnName="series" />
+                <ScalarProperty Name="docDate" ColumnName="docDate" />
+                <ScalarProperty Name="docObjectCode" ColumnName="docObjectCode" />
+                <ScalarProperty Name="CardCode" ColumnName="CardCode" />
+                <ScalarProperty Name="user_SSAI" ColumnName="user_SSAI" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="combustible_excepciones">
+            <EntityTypeMapping TypeName="Hertz_Projects_Model.combustible_excepciones">
+              <MappingFragment StoreEntitySet="combustible_excepciones">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cod_cliente" ColumnName="cod_cliente" />
+                <ScalarProperty Name="id_fuel_exception" ColumnName="id_fuel_exception" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
