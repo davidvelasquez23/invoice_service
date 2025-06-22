@@ -776,15 +776,15 @@ namespace InvoiceXmlService
 
             try
             {
-                //var path = GetFilesLocation();
-                //var pathrprocessed = GetFilesProcesLocation();
-                //var errorProcessed = GetFilesNoProcesErrorLocation();
-                //var NocorrelativoPath = GetFilesNocorrelativoLocation();
+                var path = GetFilesLocation();
+                var pathrprocessed = GetFilesProcesLocation();
+                var errorProcessed = GetFilesNoProcesErrorLocation();
+                var NocorrelativoPath = GetFilesNocorrelativoLocation();
 
-                var path = @"C:\\RentWorks";
-                var pathrprocessed = @"C:\\RentWorks\XML_PROCESADOS";
-                var errorProcessed = @"C:\\RentWorks\XML_ERRORES";
-                var NocorrelativoPath = @"C:\\RentWorks\XML_SIN_CORRELATIVO";
+                //var path = @"C:\\RentWorks";
+                //var pathrprocessed = @"C:\\RentWorks\XML_PROCESADOS";
+                //var errorProcessed = @"C:\\RentWorks\XML_ERRORES";
+                //var NocorrelativoPath = @"C:\\RentWorks\XML_SIN_CORRELATIVO";
 
 
                 string[] fileEntries = Directory.GetFiles(path);
@@ -2177,7 +2177,7 @@ namespace InvoiceXmlService
                 //cryRpt.Load(@"C:\Users\alexa\OneDrive\Desktop\SAP\proyecto xml invoice\LectorFacturasSap 2.0\LectorFacturasSap\reportes\FacturadeVentaHERTZ.rpt");
                 cryRpt.Load(sAppPath);
                 //cryRpt.Load(@"C:\Users\alexa\OneDrive\Desktop\SAP\proyecto xml invoice\LectorFacturasSap 2.0\LectorFacturasSap\reportes\FacturadeVentaHERTZ.rpt");
-                cryRpt.DataSourceConnections[0].SetConnection("10.10.2.7", db, "System2", "Sap5erver");
+                cryRpt.DataSourceConnections[0].SetConnection("10.10.2.10", db, "System", "Sap5erver");
 
                 //cryRpt.Load(@"D:\C# Demos\Crystal Reports\CrystalReportDemo\CrystalReportDemo\CrystalReport1.rpt");
                 cryRpt.SetParameterValue("UserCode@", "dvelasquez");

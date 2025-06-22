@@ -15,14 +15,14 @@ namespace InvoiceXmlService
         static void Main()
         {
 
-            var process = new LogicSapInvoice();
-            while (true)
-            {
+            //var process = new LogicSapInvoice();
+            //while (true)
+            //{
 
-                process.ProcesFilesFromXML();
-                //var res = tmp.GetBusinessPartnersByIdV2("CCO-00478", "test");
-                System.Threading.Thread.Sleep(10000);
-            }
+            //    process.ProcesFilesFromXML();
+            //    //var res = tmp.GetBusinessPartnersByIdV2("CCO-00478", "test");
+            //    System.Threading.Thread.Sleep(10000);
+            //}
 
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
