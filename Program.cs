@@ -15,11 +15,11 @@ namespace InvoiceXmlService
         static void Main()
         {
 
-            //var process = new LogicSapInvoice();
+            var process = new LogicSapInvoice();
             //while (true)
             //{
 
-            //    process.ProcesFilesFromXML();
+               process.ProcesFilesFromXML();
             //    //var res = tmp.GetBusinessPartnersByIdV2("CCO-00478", "test");
             //    System.Threading.Thread.Sleep(10000);
             //}

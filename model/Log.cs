@@ -40,7 +40,8 @@ namespace InvoiceXmlService.model
         //    }
         //}
 
-        public static void WritelogInvoice(string methodName, string errorDescription, string traceError, string CompleteFileName, string locationcode, string projectName = "Lector xml facturacion")
+
+        public static void WritelogInvoice(string methodName, string errorDescription="", string traceError="", string CompleteFileName="", string locationcode="", string projectName = "Lector xml facturacion")
         {
             try
             {
